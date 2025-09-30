@@ -3,7 +3,6 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 import { DuelUserDto } from './dto/duel-user.dto';
-import { listUserDto } from './dto/list-user.dto';
 
 
 @Controller('users')
@@ -32,13 +31,7 @@ export class UsersController {
   @Get('list')
   async listUsers(): Promise<Partial<User>[]> {
     const users = await this.usersService.listUsers();
-    return users.map(user => ({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      totalPoints: user.totalPoints,
-      createdAt: user.createdAt,
-    }));
+    return users 
   }
 }
 

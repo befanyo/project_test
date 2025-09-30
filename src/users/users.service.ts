@@ -14,9 +14,7 @@ export class UsersService {
       const user = await this.userModel.create(dto);
       return user;
     } catch (err) {
-      if (err instanceof UniqueConstraintError) {
-        throw new ConflictException('Username or email already exists');
-      }
+      console.log(err)
       throw new InternalServerErrorException('Database error');
     }
   }
@@ -39,9 +37,7 @@ export class UsersService {
 
       return await winner.reload();
     } catch (err) {
-      if (err instanceof UniqueConstraintError) {
-        throw new ConflictException('Username or email already exists');
-      }
+      console.log(err)
       throw new InternalServerErrorException('Database error');
     }
   }
@@ -52,6 +48,7 @@ export class UsersService {
       order: [['totalPoints', 'DESC']],
     });
   } catch (err) {
+    console.log(err)
     throw new InternalServerErrorException('Database error');
   }
 }

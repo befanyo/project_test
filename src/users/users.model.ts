@@ -21,6 +21,9 @@ export class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
+  static findById(secondUserId: number | undefined) {
+    throw new Error('Method not implemented.');
+  }
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)

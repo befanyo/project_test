@@ -6,11 +6,6 @@ import { User } from './users/users.model';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      // если NODE_ENV не задан, используем .env
-      envFilePath: process.env.NODE_ENV ? `.${process.env.NODE_ENV}.env` : '.env',
-      isGlobal: true,
-    }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.POSTGRES_HOST || 'localhost',
@@ -18,10 +13,10 @@ import { User } from './users/users.model';
       username: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASSWORD || 'password',
       database: process.env.POSTGRES_DB || 'test_db',
-      models: [User],          // список моделей (для auto sync)
+      models: [User],          
       autoLoadModels: true,
-      synchronize: true,       // dev only — создаёт таблицы автоматически
-      // logging: false,
+      synchronize: true,      
+       logging: false,
     }),
     UsersModule,
   ],
